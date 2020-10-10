@@ -20,8 +20,10 @@ public class Classe {
 	private int codeCL; 
 	private String libelleCL;
 	private int nbrEtudiant ; 
-	private String specialite  ; 
-	
+	private String specialite  ;
+	private String mail ;
+
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
 	private List<Examen> examen; 
@@ -86,8 +88,7 @@ public class Classe {
 	}
 	public void setModuleClasse(List<Module_Classe> moduleClasse) {
 		this.moduleClasse = moduleClasse;
-	} 
-	
-	
-
+	}
+	public String getMail() {return mail;}
+	public void setMail(String mail) {this.mail = mail;}
 }

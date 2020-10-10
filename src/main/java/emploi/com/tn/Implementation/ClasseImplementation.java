@@ -19,21 +19,23 @@ public class ClasseImplementation implements IClasseService{
     private IAnneeUniversitaireDAO auRepository;
 	
 	@Override
-	public void addClasse(String lib, int nbrEtd, String specialite, int anneUniv) {
+	public void addClasse(String lib, int nbrEtd, String specialite,String mail, int anneUniv) {
 		Classe c = new Classe();
 		c.setLibelleCL(lib);
 		c.setNbrEtudiant(nbrEtd);
 		c.setSpecialite(specialite);
+		c.setMail(mail) ;
 		c.setAnneeUniver(auRepository.findById(anneUniv).get());
 		classeRepository.save(c);
 	}
 
 	@Override
-	public void editClasse(int id, String lib, int nbrEtd, String specialite, int anneUniv) {
+	public void editClasse(int id, String lib, int nbrEtd, String specialite,String mail, int anneUniv) {
 		Classe c = classeRepository.findById(id).get();
 		c.setLibelleCL(lib);
 		c.setNbrEtudiant(nbrEtd);
 		c.setSpecialite(specialite);
+		c.setMail(mail) ;
 		c.setAnneeUniver(auRepository.findById(anneUniv).get());
 		classeRepository.save(c);
 	}

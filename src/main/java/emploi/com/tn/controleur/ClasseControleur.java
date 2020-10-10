@@ -37,8 +37,9 @@ public class ClasseControleur {
 		int nbr  = Integer.parseInt(obj.get("nbrEtudiant").toString());
 		String lib  = obj.get("libelleCL").toString();
 		String spec  = obj.get("specialite").toString();
+		String mail  = obj.get("mail").toString();
 		int au  = Integer.parseInt(obj.get("anneUniversitaire").toString());
-		classeService.addClasse(lib, nbr, spec, au);
+		classeService.addClasse(lib, nbr, spec,mail , au);
 		return true;
 	}
 
@@ -49,8 +50,9 @@ public class ClasseControleur {
 		int nbr  = Integer.parseInt(obj.get("nbrEtudiant").toString());
 		String lib  = obj.get("libelleCL").toString();
 		String spec  = obj.get("specialite").toString();
+		String mail  = obj.get("mail").toString();
 		int au  = Integer.parseInt(obj.get("anneUniversitaire").toString());
-		classeService.editClasse(idd, lib, nbr, spec, au);
+		classeService.editClasse(idd, lib, nbr, spec,mail, au);
 		return true;
 
 	}

@@ -2,7 +2,7 @@ package emploi.com.tn.controleur;
 
 import java.util.List;
 
-import emploi.com.tn.entities.Etudiant;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,7 +32,7 @@ public class EspModuleControleur {
 		return espModuleService.getESPModules();
 	}
 
-	@PostMapping("/modules")
+	/*@PostMapping("/modules")
 	public boolean ajout(@RequestBody JSONObject obj)throws Exception {
 		System.out.println("----------> Object recus : " + obj);
 		String designation  = obj.get("designation").toString();
@@ -49,6 +49,18 @@ public class EspModuleControleur {
 		int nbrHeures  = Integer.parseInt(obj.get("nbrHeures").toString());
 		String classe  = obj.get("classe").toString();
 		espModuleService.editESPModule( idd, designation, nbrHeures,  classe);
+		return true;
+	}*/
+
+	@PostMapping("/espmodule")
+	public boolean ajout(@RequestBody ESP_Module esp_module) {
+		espModuleService.addESPModule(esp_module);
+		return true;
+	}
+
+	@PutMapping("/espmodule/{id}")
+	public boolean update(@RequestBody ESP_Module esp_module) {
+		espModuleService.addESPModule(esp_module);
 		return true;
 	}
 	@GetMapping("/modules/{id}")

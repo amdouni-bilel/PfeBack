@@ -3,6 +3,7 @@ package emploi.com.tn.Implementation;
 import java.util.List;
 
 import emploi.com.tn.dao.IClasseDAO;
+import emploi.com.tn.entities.Enseignant;
 import emploi.com.tn.entities.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ESPModuleImplementation implements IESPModuleService{
 	@Autowired
 	private IClasseDAO classeRepository;
 
-	@Override
+/*	@Override
 	public void addESPModule(String designation, int nbrHeures, String classe) {
 		ESP_Module mdl = new ESP_Module();
 
@@ -39,6 +40,16 @@ public class ESPModuleImplementation implements IESPModuleService{
 		mdl.setClasse(classeRepository.getOne(classe));
 
 		esModuleRepository.save(mdl);
+	}*/
+
+	@Override
+	public void addESPModule(ESP_Module esp_module) {
+		esModuleRepository.save(esp_module);
+	}
+
+	@Override
+	public void editESPModule(ESP_Module esp_module) {
+		esModuleRepository.save(esp_module);
 	}
 
 	@Override

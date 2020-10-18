@@ -13,8 +13,8 @@ public class UP {
     private String LibelleUP ;
 
     @ManyToOne
-    @JoinColumn(name="espdept_id")
-    private ESP_Dept espDept;
+    @JoinColumn(name="code_dept")
+    private ESP_Dept espdept;
 
 
     public int getIdUP() {
@@ -33,11 +33,11 @@ public class UP {
         LibelleUP = libelleUP;
     }
 
-    public ESP_Dept getEspDept() {
-        return espDept;
+    public ESP_Dept getEspdept() {
+        return espdept;
     }
 
-    public void setEspDept(ESP_Dept espDept) {
-        this.espDept = espDept;
+    public void setEspdept(ESP_Dept espdept) {
+        this.espdept = espdept;
     }
 }

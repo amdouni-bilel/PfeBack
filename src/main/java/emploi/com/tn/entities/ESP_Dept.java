@@ -17,7 +17,7 @@ public class ESP_Dept {
     private List<Classe> classes;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "esp_dept", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "espdept", cascade = CascadeType.ALL)
     private List<UP> ups;
 
     public int getCode_dept() {

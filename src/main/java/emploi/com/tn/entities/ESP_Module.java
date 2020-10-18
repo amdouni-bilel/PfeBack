@@ -13,6 +13,11 @@ public class ESP_Module {
 	private int codeModule;
 	private String designation ;
 	private int nbrHeures;
+	private float coefficient;
+	private String typeEpreuve;
+	private String semestre;
+	private String periode;
+
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
@@ -21,6 +26,10 @@ public class ESP_Module {
 	@ManyToOne
 	@JoinColumn(name="classe_id")
 	private Classe classe;
+
+	@ManyToOne
+	@JoinColumn(name="enseignant_id")
+	private Enseignant enseignant;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
@@ -62,4 +71,43 @@ public class ESP_Module {
 		this.classe = classe;
 	}
 
+	public float getCoefficient() {
+		return coefficient;
+	}
+
+	public void setCoefficient(float coefficient) {
+		this.coefficient = coefficient;
+	}
+
+	public String getTypeEpreuve() {
+		return typeEpreuve;
+	}
+
+	public void setTypeEpreuve(String typeEpreuve) {
+		this.typeEpreuve = typeEpreuve;
+	}
+
+	public String getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(String semestre) {
+		this.semestre = semestre;
+	}
+
+	public String getPeriode() {
+		return periode;
+	}
+
+	public void setPeriode(String periode) {
+		this.periode = periode;
+	}
+
+	public Enseignant getEnseignant() {
+		return enseignant;
+	}
+
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
+	}
 }

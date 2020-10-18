@@ -15,7 +15,6 @@ public class Enseignant {
 	private String prenom; 
 	private String typeEns ; 
 	private int tel ;
-	//disponibilite - absence (surveillance : present ou absent)
 	private String sex ;
 	private String mail ;
 	private int nbrsurveillance ;
@@ -28,6 +27,10 @@ public class Enseignant {
 	@JsonIgnore
 	@OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
 	private List<Examen> examens;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
+	private List<ESP_Module> espModules ;
 
 	@ManyToOne
 	@JoinColumn(name="code_dept")
@@ -100,5 +103,21 @@ public class Enseignant {
 
 	public void setNbrHeursurveillance(float nbrHeursurveillance) {
 		this.nbrHeursurveillance = nbrHeursurveillance;
+	}
+
+	public List<ESP_Module> getEspModules() {
+		return espModules;
+	}
+
+	public void setEspModules(List<ESP_Module> espModules) {
+		this.espModules = espModules;
+	}
+
+	public ESP_Dept getEspdept() {
+		return espdept;
+	}
+
+	public void setEspdept(ESP_Dept espdept) {
+		this.espdept = espdept;
 	}
 }

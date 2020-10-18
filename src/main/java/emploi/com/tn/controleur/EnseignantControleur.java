@@ -35,11 +35,10 @@ public class EnseignantControleur {
 		return true;
 	}
 
-	@PutMapping("/enseignants")
+	@PutMapping("/enseignants/{id}")
 	public boolean update(@RequestBody Enseignant ens) {   
 		enseignantService.editEnseignant(ens); 
 		return true;
-
 	}
 
 	@GetMapping("/enseignants/{id}")

@@ -2,12 +2,7 @@ package emploi.com.tn.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,10 +16,23 @@ public class Enseignant {
 	private String typeEns ; 
 	private int tel ;
 	//disponibilite - absence (surveillance : present ou absent)
-	
+	private String sex ;
+	private String mail ;
+	private int nbrsurveillance ;
+	private float  nbrHeursurveillance ;
+
+
+
+
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
 	private List<Examen> examens;
+
+	@ManyToOne
+	@JoinColumn(name="code_dept")
+	private ESP_Dept espdept;
+
 	public int getIdEns() {
 		return idEns;
 	}
@@ -60,8 +68,37 @@ public class Enseignant {
 	}
 	public void setExamens(List<Examen> examens) {
 		this.examens = examens;
-	} 
-	
-	
-	
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public int getNbrsurveillance() {
+		return nbrsurveillance;
+	}
+
+	public void setNbrsurveillance(int nbrsurveillance) {
+		this.nbrsurveillance = nbrsurveillance;
+	}
+
+	public float getNbrHeursurveillance() {
+		return nbrHeursurveillance;
+	}
+
+	public void setNbrHeursurveillance(float nbrHeursurveillance) {
+		this.nbrHeursurveillance = nbrHeursurveillance;
+	}
 }

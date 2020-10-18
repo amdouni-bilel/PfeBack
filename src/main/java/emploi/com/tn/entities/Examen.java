@@ -23,10 +23,11 @@ public class Examen {
 	private String typeEx; 
 	private String semestre ;
 
-	//Enseignant : dispo et ne peut pas surveiller  2 examens en mm temps)
+		//Enseignant : dispo et ne peut pas surveiller  2 examens en mm temps)
 	@ManyToOne
 	@JoinColumn(name="salle_id")
-	private Salle salle; 
+	private Salle salle;
+
 	
 	@ManyToOne
 	@JoinColumn(name="enseignant_id")

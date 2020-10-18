@@ -41,7 +41,7 @@ public class EtudiantControleur {
 		String nom  = obj.get("nom").toString();
 		String prenom  = obj.get("prenom").toString();
 		String mailEtud  = obj.get("mailEtud").toString();
-		int classe  = Integer.parseInt(obj.get("classe").toString());
+		String classe  = obj.get("classe").toString();
 		etudiantService.addEtudiant( cin, nom, prenom,mailEtud , classe);
 		return true;
 	}
@@ -53,7 +53,7 @@ public class EtudiantControleur {
 		String nom  = obj.get("nom").toString();
 		String prenom  = obj.get("prenom").toString();
 		String mailEtud  = obj.get("mailEtud").toString();
-		int classe  = Integer.parseInt(obj.get("classe").toString());
+		String classe  = obj.get("classe").toString();
 		etudiantService.editEtudiant( idd, cin, nom, prenom,mailEtud, classe);
 		return true;
 

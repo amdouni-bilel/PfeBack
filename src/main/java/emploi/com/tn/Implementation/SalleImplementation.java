@@ -25,14 +25,14 @@ public class SalleImplementation  implements ISalleService {
 
 	@Override
 	public void updateSalle(Salle salle) {  
-		/*Salle s = salleRepository.getOne(salle.getCodeSalle());
+		Salle s = salleRepository.getOne(salle.getCodeSalle());
 		s.setCapacite(salle.getCapacite());
-		s.setTypeSalle(salle.getTypeSalle());*/
+		s.setSite(salle.getSite());
 		salleRepository.save(salle);
 	}
 
 	@Override
-	public Salle getSalle(int id) { 
+	public Salle getSalle(String id) {
 		return salleRepository.findById(id).get(); 
 	}
 
@@ -43,7 +43,7 @@ public class SalleImplementation  implements ISalleService {
 	}
 
 	@Override
-	public void deleteSalle(int id) {
+	public void deleteSalle(String id) {
 		salleRepository.deleteById(id);
 	}
 

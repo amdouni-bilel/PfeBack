@@ -32,7 +32,7 @@ public class ExamenImplementation implements IExamenService{
     private ISalleDAO salleRepository;
 
 	@Override
-	public void addExamen(Date date, String duree, int nbrEtd, String sesmtre, String type, int au, int classe, int enseignant, int module, int salle) {
+	public void addExamen(Date date, String duree, int nbrEtd, String sesmtre, String type, int au, String classe, int enseignant, int module, int salle) {
 		Examen e = new Examen();
 		e.setDateEx(date);
 		e.setDureeEx(duree);
@@ -43,12 +43,12 @@ public class ExamenImplementation implements IExamenService{
 		e.setClasse(classeRepository.findById(classe).get());
 		e.setEnseignant(enseignantRepository.findById(enseignant).get());
 		e.setEspModule(esModuleRepository.findById(module).get());
-		e.setSalle(salleRepository.findById(salle).get()); 
+		//e.setSalle(salleRepository.findById(salle).get());
 		examenRepository.save(e);
 	}
 
 	@Override
-	public void editExamen(int id, Date date, String duree, int nbrEtd, String sesmtre, String type, int au, int classe, int enseignant, int module, int salle) {
+	public void editExamen(int id, Date date, String duree, int nbrEtd, String sesmtre, String type, int au, String classe, int enseignant, int module, int salle) {
 		Examen e = examenRepository.findById(id).get();
 		e.setDateEx(date);
 		e.setDureeEx(duree);
@@ -59,19 +59,17 @@ public class ExamenImplementation implements IExamenService{
 		e.setClasse(classeRepository.findById(classe).get());
 		e.setEnseignant(enseignantRepository.findById(enseignant).get());
 		e.setEspModule(esModuleRepository.findById(module).get());
-		e.setSalle(salleRepository.findById(salle).get()); 
+		//e.setSalle(salleRepository.findById(salle).get());
 		examenRepository.save(e);
 	}
 
 	@Override
 	public Examen getExamen(int id) {
-		// TODO Auto-generated method stub
 		return examenRepository.findById(id).get();
 	}
 
 	@Override
 	public List<Examen> getExamens() {
-		// TODO Auto-generated method stub
 		return examenRepository.findAll();
 	}
 

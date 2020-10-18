@@ -38,27 +38,33 @@ public class ClasseControleur {
 		String lib  = obj.get("libelleCL").toString();
 		String spec  = obj.get("specialite").toString();
 		String mail  = obj.get("mail").toString();
+		String groupe  = obj.get("groupe").toString();
 		int au  = Integer.parseInt(obj.get("anneUniversitaire").toString());
-		classeService.addClasse(lib, nbr, spec,mail , au);
+		int espdept  = Integer.parseInt(obj.get("espdept").toString());
+		classeService.addClasse(lib, nbr, spec,mail , groupe ,au , espdept);
 		return true;
 	}
 
-	@PutMapping("/classes")
+
+	@PutMapping("/classes/{id}")
 	public boolean update(@RequestBody JSONObject obj)throws Exception{   
 		System.out.println("----------> Object recus : " + obj); 
-		int idd  = Integer.parseInt(obj.get("id").toString());
+		//String idd  = Integer.parseInt(obj.get("id").toString());
+		String idd  = obj.get("id").toString();
 		int nbr  = Integer.parseInt(obj.get("nbrEtudiant").toString());
 		String lib  = obj.get("libelleCL").toString();
 		String spec  = obj.get("specialite").toString();
 		String mail  = obj.get("mail").toString();
+		String groupe  = obj.get("groupe").toString();
 		int au  = Integer.parseInt(obj.get("anneUniversitaire").toString());
-		classeService.editClasse(idd, lib, nbr, spec,mail, au);
+		int espdept  = Integer.parseInt(obj.get("espdept").toString());
+		classeService.editClasse(idd, lib, nbr, spec,mail, groupe ,au,espdept);
 		return true;
 
 	}
 
 	@GetMapping("/classes/{id}")
-	public Classe getByID(@PathVariable("id") int id) {
+	public Classe getByID(@PathVariable("id") String id) {
 		System.out.println("----------> IDD : " + id); 
 		Classe cl = classeService.getClasse(id); 
 		return cl; 
@@ -66,7 +72,7 @@ public class ClasseControleur {
 	}
 
 	@DeleteMapping("/classes/{id}")
-	public boolean  deletee(@PathVariable int id) { 
+	public boolean  deletee(@PathVariable String id) {
 		classeService.deleteClasse(id);
 		return true; 
 	}

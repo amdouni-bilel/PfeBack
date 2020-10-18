@@ -51,7 +51,7 @@ public class ExamenControleur {
 		String semestre  = obj.get("semestre").toString();
 		String type  = obj.get("typeEx").toString(); 
 		int au  = Integer.parseInt(obj.get("anneeUniversitaire").toString());
-		int classe  = Integer.parseInt(obj.get("classe").toString());
+		String classe  = obj.get("classe").toString();
 		int ens  = Integer.parseInt(obj.get("enseignant").toString());
 		int mod  = Integer.parseInt(obj.get("espModule").toString());
 		int sall  = Integer.parseInt(obj.get("salle").toString());  
@@ -77,7 +77,7 @@ public class ExamenControleur {
 		String semestre  = obj.get("semestre").toString();
 		String type  = obj.get("typeEx").toString(); 
 		int au  = Integer.parseInt(obj.get("anneeUniversitaire").toString());
-		int classe  = Integer.parseInt(obj.get("classe").toString());
+		String classe  = obj.get("classe").toString();
 		int ens  = Integer.parseInt(obj.get("enseignant").toString());
 		int mod  = Integer.parseInt(obj.get("espModule").toString());
 		int sall  = Integer.parseInt(obj.get("salle").toString());  

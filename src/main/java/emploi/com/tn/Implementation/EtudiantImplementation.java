@@ -19,7 +19,7 @@ public class EtudiantImplementation implements IEtudiantService{
     private IClasseDAO classeRepository;
 	
 	@Override
-	public void addEtudiant(int cin, String nom, String prenom,String mailEtud , int classe) {
+	public void addEtudiant(int cin, String nom, String prenom,String mailEtud , String classe) {
 		Etudiant e = new Etudiant();
 		e.setCin(cin);
 		e.setNom(nom);
@@ -30,7 +30,7 @@ public class EtudiantImplementation implements IEtudiantService{
 	}
 
 	@Override
-	public void editEtudiant(int id, int cin, String nom, String prenom,String mailEtud ,  int classe) {
+	public void editEtudiant(int id, int cin, String nom, String prenom,String mailEtud ,  String classe) {
 		Etudiant e =  etudiantRepository.findById(id).get();
 		e.setCin(cin);
 		e.setNom(nom);

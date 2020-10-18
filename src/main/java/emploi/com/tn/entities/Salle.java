@@ -14,10 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Salle { 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codeSalle; 
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String codeSalle;
 	private int capacite;  
-	private String  typeSalle;
+	private String  site;
 	//disponibilite -- motifDisp
 	
 	@JsonIgnore
@@ -25,10 +25,8 @@ public class Salle {
 	private List<Examen> examens;
 	
 	
-	public int getCodeSalle() {
-		return codeSalle;
-	}
-	public void setCodeSalle(int codeSalle) {
+	public String getCodeSalle() {return codeSalle;}
+	public void setCodeSalle(String codeSalle) {
 		this.codeSalle = codeSalle;
 	}
 	public int getCapacite() {
@@ -37,19 +35,15 @@ public class Salle {
 	public void setCapacite(int capacite) {
 		this.capacite = capacite;
 	}
-	public String getTypeSalle() {
-		return typeSalle;
+	public String getSite() {
+		return site;
 	}
-	public void setTypeSalle(String typeSalle) {
-		this.typeSalle = typeSalle;
+	public void setSite(String site) {
+		this.site = site;
 	}
-	public List<Examen> getExamens() {
-		return examens;
-	}
-	public void setExamens(List<Examen> examens) {
-		this.examens = examens;
-	} 
-	
+	public List<Examen> getExamens() {return examens;}
+	public void setExamens(List<Examen> examens) {this.examens = examens;}
+
 	
 	
 

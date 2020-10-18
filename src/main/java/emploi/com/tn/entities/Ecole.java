@@ -17,7 +17,9 @@ public class Ecole {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idEcole ; 
 	private String libelle ;
-	
+
+
+
 	@JsonIgnore  //boucle infini
 	@OneToMany(mappedBy = "ecole", cascade = CascadeType.ALL)
 	private List<AnneeUniversitaire> anneeUnivs;
@@ -39,8 +41,8 @@ public class Ecole {
 	}
 	public void setAnneeUnivs(List<AnneeUniversitaire> anneeUnivs) {
 		this.anneeUnivs = anneeUnivs;
-	} 
-	
+	}
+
 	
 
 }

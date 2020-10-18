@@ -32,8 +32,8 @@ public class SalleControleur {
 
 	@GetMapping("/salles")
 	public ResponseEntity<Object> getSalles() {
-		List<Salle> employeeList = salleService.getSalles();
-		return new ResponseEntity<>(employeeList, HttpStatus.OK);
+		List<Salle> salleList = salleService.getSalles();
+		return new ResponseEntity<>(salleList, HttpStatus.OK);
 	}
 	
 	
@@ -46,10 +46,10 @@ public class SalleControleur {
  
  
 
-	@PutMapping("/salles")
+	@PutMapping("/salles/{id}")
 	public boolean updateSalle(@RequestBody Salle salle) { 
 		System.out.println("----------> Capacite : " + salle.getCapacite());
-		System.out.println("----------> Type : " + salle.getTypeSalle());
+		System.out.println("----------> Site : " + salle.getSite());
 		System.out.println("----------> ID : " + salle.getCodeSalle()); 
 		salleService.updateSalle(salle);
 		return true;
@@ -57,7 +57,7 @@ public class SalleControleur {
 	}
 
 	@GetMapping("/salles/{id}")
-	public Salle getSalle(@PathVariable("id") int id) {
+	public Salle getSalle(@PathVariable("id") String id) {
 		System.out.println("----------> IDD : " + id); 
 		Salle salle = salleService.getSalle(id); 
 		return salle; 
@@ -65,7 +65,7 @@ public class SalleControleur {
 	}
 
 	@DeleteMapping("/salles/{id}")
-	public boolean  deleteSalle(@PathVariable int id) { 
+	public boolean  deleteSalle(@PathVariable String id) {
 		salleService.deleteSalle(id); 
 		return true; 
 	}

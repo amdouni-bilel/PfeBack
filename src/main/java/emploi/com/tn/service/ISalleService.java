@@ -8,9 +8,9 @@ public interface ISalleService  {
 	
 	public  void createSalle(Salle salle); 
 	public  void updateSalle(Salle salle); 
-	public  Salle getSalle(int id); 
+	public  Salle getSalle(String id);
 	public  List<Salle> getSalles(); 
-	public  void deleteSalle(int id);
+	public  void deleteSalle(String id);
 	 
  
 }

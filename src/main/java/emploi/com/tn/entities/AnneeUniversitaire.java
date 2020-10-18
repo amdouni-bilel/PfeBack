@@ -19,11 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class AnneeUniversitaire {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idAU; 
-	@Temporal(TemporalType.DATE)
-	private Date dateDebut ; 
-	@Temporal(TemporalType.DATE)
-	private Date dateFin ; 
+	private int idAU;
+	private String libelleAU ;
 	private String semestre ;  
 	
 	@JsonIgnore
@@ -44,18 +41,6 @@ public class AnneeUniversitaire {
 	}
 	public void setIdAU(int idAU) {
 		this.idAU = idAU;
-	}
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-	public Date getDateFin() {
-		return dateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
 	}
 	public String getSemestre() {
 		return semestre;
@@ -80,9 +65,12 @@ public class AnneeUniversitaire {
 	}
 	public void setClasses(List<Classe> classes) {
 		this.classes = classes;
-	} 
-	
-	
-	
-	
+	}
+	public String getLibelleAU() {
+		return libelleAU;
+	}
+
+	public void setLibelleAU(String libelleAU) {
+		this.libelleAU = libelleAU;
+	}
 }

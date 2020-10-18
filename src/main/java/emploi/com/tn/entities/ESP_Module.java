@@ -2,12 +2,7 @@ package emploi.com.tn.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,14 +10,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ESP_Module {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codeModule; 
-	private String designation ; 
+	private int codeModule;
+	private String designation ;
 	private int nbrHeures;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
-	private List<Module_Classe> moduleClasse ; 
-	
+	private List<Module_Classe> moduleClasse ;
+
+	@ManyToOne
+	@JoinColumn(name="classe_id")
+	private Classe classe;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
 	private List<Examen> examens ;
@@ -55,7 +54,12 @@ public class ESP_Module {
 	}
 	public void setExamens(List<Examen> examens) {
 		this.examens = examens;
-	} 
-	
-	
+	}
+	public Classe getClasse() {
+		return classe;
+	}
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
 }

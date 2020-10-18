@@ -6,10 +6,10 @@ import emploi.com.tn.entities.Classe;
 
 public interface IClasseService {
 	
-	public  void addClasse(String lib, int nbrEtd, String specialite,String mail, int anneUniv);
-	public  void editClasse(int id, String lib, int nbrEtd, String specialite,String mail, int anneUniv);
-	public  Classe getClasse(int id); 
+	public  void addClasse(String lib, int nbrEtd, String specialite,String mail, String groupe, int anneUniv , int espdept);
+	public  void editClasse(String id, String lib, int nbrEtd, String specialite,String mail, String groupe,int anneUniv , int espdept );
+	public  Classe getClasse(String id);
 	public  List<Classe> getClasses(); 
-	public  void deleteClasse(int id);
+	public  void deleteClasse(String id);
 
 }

@@ -16,12 +16,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Classe {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codeCL; 
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String codeCL;
 	private String libelleCL;
 	private int nbrEtudiant ; 
 	private String specialite  ;
 	private String mail ;
+	private String groupe ;
+
+
 
 
 	@JsonIgnore
@@ -31,20 +34,28 @@ public class Classe {
 	@JsonIgnore
 	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
 	private List<Etudiant> etudiants;
-	
-	@ManyToOne
-	@JoinColumn(name="anneeUniversitaire_id")
-	private AnneeUniversitaire anneeUniver ; 
-	
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
+	private List<ESP_Module> ESP_Modules;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
 	private List<Module_Classe> moduleClasse ;
 	
+	@ManyToOne
+	@JoinColumn(name="anneeUniversitaire_id")
+	private AnneeUniversitaire anneeUniver ;
+
+	@ManyToOne
+	@JoinColumn(name="code_dept")
+	private ESP_Dept espdept;
 	
-	public int getCodeCL() {
+	
+	public String getCodeCL() {
 		return codeCL;
 	}
-	public void setCodeCL(int codeCL) {
+	public void setCodeCL(String codeCL) {
 		this.codeCL = codeCL;
 	}
 	public String getLibelleCL() {
@@ -91,4 +102,28 @@ public class Classe {
 	}
 	public String getMail() {return mail;}
 	public void setMail(String mail) {this.mail = mail;}
+
+	public List<ESP_Module> getESP_Modules() {
+		return ESP_Modules;
+	}
+
+	public void setESP_Modules(List<ESP_Module> ESP_Modules) {
+		this.ESP_Modules = ESP_Modules;
+	}
+
+	public ESP_Dept getEspdept() {
+		return espdept;
+	}
+
+	public void setEspdept(ESP_Dept espdept) {
+		this.espdept = espdept;
+	}
+
+	public String getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(String groupe) {
+		this.groupe = groupe;
+	}
 }

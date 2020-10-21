@@ -46,7 +46,7 @@ public class EtudiantControleur {
 		return true;
 	}
 
-	@PutMapping("/etudiants")
+	@PutMapping("/etudiants/{id}")
 	public boolean update(@RequestBody JSONObject obj)throws Exception { 
 		int idd  = Integer.parseInt(obj.get("idEtudiant").toString());
 		int cin  = Integer.parseInt(obj.get("cin").toString());

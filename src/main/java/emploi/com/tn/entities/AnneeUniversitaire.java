@@ -23,10 +23,6 @@ public class AnneeUniversitaire {
 	private String libelleAU ;
 	private String semestre ;  
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "anneeUniversitaire", cascade = CascadeType.ALL)
-	private List<Examen> examen; 
-	
 	
 	@ManyToOne
 	@JoinColumn(name="ecole_id")
@@ -48,12 +44,7 @@ public class AnneeUniversitaire {
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
 	}
-	public List<Examen> getExamen() {
-		return examen;
-	}
-	public void setExamen(List<Examen> examen) {
-		this.examen = examen;
-	}
+
 	public Ecole getEcole() {
 		return ecole;
 	}

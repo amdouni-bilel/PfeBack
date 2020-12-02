@@ -10,7 +10,7 @@ public class UP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUP ;
-    private String LibelleUP ;
+    private String libelleUP ;
 
     @ManyToOne
     @JoinColumn(name="code_dept")
@@ -25,15 +25,17 @@ public class UP {
         this.idUP = idUP;
     }
 
+   
+
     public String getLibelleUP() {
-        return LibelleUP;
-    }
+		return libelleUP;
+	}
 
-    public void setLibelleUP(String libelleUP) {
-        LibelleUP = libelleUP;
-    }
+	public void setLibelleUP(String libelleUP) {
+		this.libelleUP = libelleUP;
+	}
 
-    public ESP_Dept getEspdept() {
+	public ESP_Dept getEspdept() {
         return espdept;
     }
 

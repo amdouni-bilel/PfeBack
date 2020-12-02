@@ -15,8 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Classe {
-	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id 
 	private String codeCL;
 	private String libelleCL;
 	private int nbrEtudiant ; 
@@ -37,16 +36,18 @@ public class Classe {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
-	private List<ESP_Module> ESP_Modules;
+	private List<ESP_Module> esp_Modules;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
 	private List<Module_Classe> moduleClasse ;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="anneeUniversitaire_id")
 	private AnneeUniversitaire anneeUniver ;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="code_dept")
 	private ESP_Dept espdept;
@@ -103,14 +104,14 @@ public class Classe {
 	public String getMail() {return mail;}
 	public void setMail(String mail) {this.mail = mail;}
 
-	public List<ESP_Module> getESP_Modules() {
-		return ESP_Modules;
-	}
 
-	public void setESP_Modules(List<ESP_Module> ESP_Modules) {
-		this.ESP_Modules = ESP_Modules;
+	public List<ESP_Module> getEsp_Modules() {
+		return esp_Modules;
 	}
-
+	public void setEsp_Modules(List<ESP_Module> esp_Modules) {
+		this.esp_Modules = esp_Modules;
+	}
+	
 	public ESP_Dept getEspdept() {
 		return espdept;
 	}

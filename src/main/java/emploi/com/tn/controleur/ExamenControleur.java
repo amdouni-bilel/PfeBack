@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import emploi.com.tn.entities.Examen; 
+import emploi.com.tn.entities.Examen;
+import emploi.com.tn.service.IEnseignantService;
 import emploi.com.tn.service.IExamenService;
 
 @RestController
@@ -28,6 +29,8 @@ public class ExamenControleur {
 
 	@Autowired
 	private IExamenService examenService;
+	@Autowired
+	private IEnseignantService enseignantService;
 	
 	@GetMapping("/examens")
 	public List<Examen> getAll() { 
@@ -46,17 +49,26 @@ public class ExamenControleur {
 		catch (ParseException e) {
 		    e.printStackTrace();
 		} 
-		String duree  = obj.get("dureeEx").toString();
-		int nbrEtd  = Integer.parseInt(obj.get("nbrEtdEx").toString());
+		String heure  = obj.get("heureEx").toString();
+		String duree  = obj.get("dureeEx").toString(); 
+		String dsex  = obj.get("dsex").toString(); 
 		String semestre  = obj.get("semestre").toString();
-		String type  = obj.get("typeEx").toString(); 
-		int au  = Integer.parseInt(obj.get("anneeUniversitaire").toString());
+		String session  = obj.get("session").toString();
+		String typeEx  = obj.get("typeEx").toString();
 		String classe  = obj.get("classe").toString();
-		int ens  = Integer.parseInt(obj.get("enseignant").toString());
-		int mod  = Integer.parseInt(obj.get("espModule").toString());
-		int sall  = Integer.parseInt(obj.get("salle").toString());  
-		examenService.addExamen(dateEx, duree, nbrEtd, semestre, type, au, classe, ens, mod, sall);
-		return true;
+		String mod  =  obj.get("espModule").toString() ;
+		String ens  =  obj.get("enseignant").toString() ;
+		String salle  = obj.get("salle").toString();
+		String groupe  = obj.get("groupe").toString();
+		int test = examenService.verifExistanceExamen(dateEx, heure, classe, groupe);
+		if(test==1) {
+			return false;
+		}else {
+			examenService.addExamen(dateEx, heure, duree, dsex, semestre, session, typeEx, classe, mod, ens, salle, groupe);
+			enseignantService.editSurveillanceEnseignant(ens);
+			return true;
+		}
+		 
 	}
 
 	@PutMapping("/examens")
@@ -71,17 +83,19 @@ public class ExamenControleur {
 		catch (ParseException e) {
 		    e.printStackTrace();
 		} 
-		int idd  = Integer.parseInt(obj.get("id").toString()); 
-		String duree  = obj.get("dureeEx").toString();
-		int nbrEtd  = Integer.parseInt(obj.get("nbrEtdEx").toString());
+		int idd  = Integer.parseInt(obj.get("idExamen").toString()); 
+		String heure  = obj.get("heureEx").toString();
+		String duree  = obj.get("dureeEx").toString(); 
+		String dsex  = obj.get("dsex").toString(); 
 		String semestre  = obj.get("semestre").toString();
-		String type  = obj.get("typeEx").toString(); 
-		int au  = Integer.parseInt(obj.get("anneeUniversitaire").toString());
+		String session  = obj.get("session").toString();
+		String typeEx  = obj.get("typeEx").toString();
 		String classe  = obj.get("classe").toString();
-		int ens  = Integer.parseInt(obj.get("enseignant").toString());
-		int mod  = Integer.parseInt(obj.get("espModule").toString());
-		int sall  = Integer.parseInt(obj.get("salle").toString());  
-		examenService.editExamen(idd, dateEx, duree, nbrEtd, semestre, type, au, classe, ens, mod, sall);
+		String mod  =  obj.get("espModule").toString() ;
+		String ens  =  obj.get("enseignant").toString() ;
+		String salle  = obj.get("salle").toString();
+		String groupe  = obj.get("groupe").toString();
+		examenService.editExamen(idd, dateEx, heure, duree, dsex, semestre, session, typeEx, classe, mod, ens, salle, groupe);
 		return true;
 
 	}

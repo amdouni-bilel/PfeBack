@@ -1,7 +1,7 @@
 package emploi.com.tn.controleur;
 
-
-import emploi.com.tn.Implementation.EspDeptImplementation;
+ 
+import emploi.com.tn.entities.Classe;
 import emploi.com.tn.entities.ESP_Dept;
 import emploi.com.tn.service.IEspDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,10 @@ public class EspDeptControleur {
     private IEspDeptService espdeptService;
 
     @GetMapping("/espdept")
-    public List<ESP_Dept> getAll() {
+    public List<ESP_Dept> getAll() { 
+		return espdeptService.getEspDepts(); 
+	}
 
-        List <ESP_Dept> espDepts = espdeptService.getEspDepts();
-        return espDepts ;
-    }
 
     @GetMapping("/espdept/{id}")
     public ESP_Dept getByID(@PathVariable("id") int id) {

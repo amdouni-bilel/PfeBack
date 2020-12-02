@@ -32,26 +32,43 @@ public class EspModuleControleur {
 		return espModuleService.getESPModules();
 	}
 
-	/*@PostMapping("/modules")
+	@PostMapping("/modules")
 	public boolean ajout(@RequestBody JSONObject obj)throws Exception {
 		System.out.println("----------> Object recus : " + obj);
-		String designation  = obj.get("designation").toString();
-		int nbrHeures  = Integer.parseInt(obj.get("nbrHeures").toString());
+		String code  = obj.get("codeModule").toString();
+		String lib  = obj.get("designation").toString();
+		int nbHeurs  = Integer.parseInt(obj.get("nbrHeures").toString());
+		float coff  = Integer.parseInt(obj.get("coefficient").toString());
+		String typeEpreuve  = obj.get("typeEpreuve").toString();
+		String semestre  = obj.get("semestre").toString();
+		String periode  = obj.get("periode").toString();
 		String classe  = obj.get("classe").toString();
-		espModuleService.addESPModule(  designation,  nbrHeures,  classe);
-		return true;
+		String enseignant  = obj.get("enseignant").toString(); 
+		int test = espModuleService.verifModuleExiste(code, lib);
+		if(test==1) {
+			return false;
+		}else {
+			espModuleService.addESPModule(code, coff, lib, nbHeurs, periode, semestre, typeEpreuve, classe, enseignant);
+			return true;
+		} 
 	}
 
 	@PutMapping("/modules")
 	public boolean update(@RequestBody JSONObject obj)throws Exception {
-		int idd  = Integer.parseInt(obj.get("codeModule").toString());
-		String designation  = obj.get("designation").toString();
-		int nbrHeures  = Integer.parseInt(obj.get("nbrHeures").toString());
+		String code  = obj.get("codeModule").toString();
+		String lib  = obj.get("designation").toString();
+		int nbHeurs  = Integer.parseInt(obj.get("nbrHeures").toString());
+		float coff  = Integer.parseInt(obj.get("coefficient").toString());
+		String typeEpreuve  = obj.get("typeEpreuve").toString();
+		String semestre  = obj.get("semestre").toString();
+		String periode  = obj.get("periode").toString();
 		String classe  = obj.get("classe").toString();
-		espModuleService.editESPModule( idd, designation, nbrHeures,  classe);
+		String enseignant  = obj.get("enseignant").toString(); 
+		espModuleService.editESPModule(code, coff, lib, nbHeurs, periode, semestre, typeEpreuve, classe, enseignant);;
 		return true;
-	}*/
+	}
 
+	/*
 	@PostMapping("/espmodule")
 	public boolean ajout(@RequestBody ESP_Module esp_module) {
 		espModuleService.addESPModule(esp_module);
@@ -62,16 +79,18 @@ public class EspModuleControleur {
 	public boolean update(@RequestBody ESP_Module esp_module) {
 		espModuleService.addESPModule(esp_module);
 		return true;
-	}
+	}*/
+	
+	
 	@GetMapping("/modules/{id}")
-	public ESP_Module getByID(@PathVariable("id") int id) {
+	public ESP_Module getByID(@PathVariable("id") String id) {
 		System.out.println("----------> IDD : " + id);
 		ESP_Module espM = espModuleService.getESPModule(id) ;
 		return espM;
 	}
 
 	@DeleteMapping("/modules/{id}")
-	public boolean  deletee(@PathVariable int id) {
+	public boolean  deletee(@PathVariable String id) {
 		espModuleService.deleteESPModule(id);
 		return true;
 	}

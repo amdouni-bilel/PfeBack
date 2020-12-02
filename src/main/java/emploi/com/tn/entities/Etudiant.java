@@ -11,9 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Etudiant {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idEtudiant ; 
+	@Id 
+	private String id; 
 	private int cin ; 
 	private String nom; 
 	private String prenom ;
@@ -25,11 +24,12 @@ public class Etudiant {
 	private Classe classe;
 	
 	
-	public int getIdEtudiant() {
-		return idEtudiant;
+ 
+	public String getId() {
+		return id;
 	}
-	public void setIdEtudiant(int idEtudiant) {
-		this.idEtudiant = idEtudiant;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public int getCin() {
 		return cin;

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import emploi.com.tn.entities.ESP_Module;
 
-public interface IESPModuleDAO extends JpaRepository<ESP_Module, Integer>{
+public interface IESPModuleDAO extends JpaRepository<ESP_Module, String>{
 
 }

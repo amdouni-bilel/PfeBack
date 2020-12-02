@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import emploi.com.tn.entities.Enseignant;
 
 
-public interface IEnseignantDAO extends JpaRepository<Enseignant, Integer>{
+public interface IEnseignantDAO extends JpaRepository<Enseignant, String>{
 
 }

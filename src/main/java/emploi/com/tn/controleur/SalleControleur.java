@@ -1,6 +1,10 @@
 package emploi.com.tn.controleur;
  
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RestController;
-
-import emploi.com.tn.entities.Enseignant;
+ 
 import emploi.com.tn.entities.Salle;
 import emploi.com.tn.service.ISalleService;
 
@@ -39,14 +41,28 @@ public class SalleControleur {
 	
 	@PostMapping("/salles")
 	public boolean ajout(@RequestBody Salle salle) {
-		salleService.createSalle(salle); 
-		return true;
+		int test = salleService.verifExistanceSalle(salle.getCodeSalle());
+		if(test==1) {
+			return false;
+		}else {
+			salleService.createSalle(salle); 
+			return true;
+		} 
+	}
+	
+	@PostMapping("/verifSalle")
+	public List<Salle> goooo(@RequestBody JSONObject obj)throws Exception {
+		System.out.println("-----OK-----");   
+		String date= obj.get("date").toString();
+		String Heure= obj.get("heure").toString()+":00";
+		List<Salle> sals = salleService.getSallesDisponibles(date, Heure);
+		return sals;
 	}
 	
  
  
 
-	@PutMapping("/salles/{id}")
+	@PutMapping("/salles")
 	public boolean updateSalle(@RequestBody Salle salle) { 
 		System.out.println("----------> Capacite : " + salle.getCapacite());
 		System.out.println("----------> Site : " + salle.getSite());

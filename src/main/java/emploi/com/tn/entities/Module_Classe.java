@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Module_Classe {
 	@Id
@@ -14,12 +16,18 @@ public class Module_Classe {
 	private int id ; 
 	private int nbrsHeures; 
 	private String semestre;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="classe_id")
 	private Classe classe ;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="espModule_id")
 	private ESP_Module espModule ;
+	
+	
 	public int getId() {
 		return id;
 	}

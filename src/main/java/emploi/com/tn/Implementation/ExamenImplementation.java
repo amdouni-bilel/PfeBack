@@ -12,6 +12,7 @@ import emploi.com.tn.dao.IESPModuleDAO;
 import emploi.com.tn.dao.IEnseignantDAO;
 import emploi.com.tn.dao.IExamenDAO;
 import emploi.com.tn.dao.ISalleDAO;
+import emploi.com.tn.entities.Etudiant;
 import emploi.com.tn.entities.Examen; 
 import emploi.com.tn.service.IExamenService;
 
@@ -32,34 +33,38 @@ public class ExamenImplementation implements IExamenService{
     private ISalleDAO salleRepository;
 
 	@Override
-	public void addExamen(Date date, String duree, int nbrEtd, String sesmtre, String type, int au, String classe, int enseignant, int module, int salle) {
+	public void addExamen(Date date, String heure, String duree, String dsex, String semestre, String session, String typeExamen, String classe, String module, String surveillant, String salle, String groupe) {
 		Examen e = new Examen();
 		e.setDateEx(date);
+		e.setHeureEx(heure); 
 		e.setDureeEx(duree);
-		e.setNbrEtdEx(nbrEtd);
-		e.setSemestre(sesmtre);
-		e.setTypeEx(type);
-		e.setAnneeUniversitaire(auRepository.findById(au).get());
+		e.setDsex(dsex);
+		e.setSemestre(semestre);
+		e.setSession(session);
+		e.setTypeEx(typeExamen); 
 		e.setClasse(classeRepository.findById(classe).get());
-		e.setEnseignant(enseignantRepository.findById(enseignant).get());
 		e.setEspModule(esModuleRepository.findById(module).get());
-		//e.setSalle(salleRepository.findById(salle).get());
+		e.setEnseignant(enseignantRepository.findById(surveillant).get());
+		e.setSalle(salleRepository.findById(salle).get());
+		e.setGroupe(groupe);
 		examenRepository.save(e);
 	}
 
 	@Override
-	public void editExamen(int id, Date date, String duree, int nbrEtd, String sesmtre, String type, int au, String classe, int enseignant, int module, int salle) {
+	public void editExamen(int id, Date date, String heure, String duree, String dsex, String semestre, String session, String typeExamen, String classe, String module, String surveillant, String salle, String groupe) {
 		Examen e = examenRepository.findById(id).get();
 		e.setDateEx(date);
+		e.setHeureEx(heure); 
 		e.setDureeEx(duree);
-		e.setNbrEtdEx(nbrEtd);
-		e.setSemestre(sesmtre);
-		e.setTypeEx(type);
-		e.setAnneeUniversitaire(auRepository.findById(au).get());
+		e.setDsex(dsex);
+		e.setSemestre(semestre);
+		e.setSession(session);
+		e.setTypeEx(typeExamen); 
 		e.setClasse(classeRepository.findById(classe).get());
-		e.setEnseignant(enseignantRepository.findById(enseignant).get());
 		e.setEspModule(esModuleRepository.findById(module).get());
-		//e.setSalle(salleRepository.findById(salle).get());
+		e.setEnseignant(enseignantRepository.findById(surveillant).get());
+		e.setSalle(salleRepository.findById(salle).get());
+		e.setGroupe(groupe);
 		examenRepository.save(e);
 	}
 
@@ -76,5 +81,20 @@ public class ExamenImplementation implements IExamenService{
 	@Override
 	public void deleteExamen(int id) {
 		examenRepository.deleteById(id);
+	}
+
+	@Override
+	public int verifExistanceExamen(Date date, String heure, String classe, String groupe) {
+		int x = 0;
+		List<Examen> all = examenRepository.findAll();
+		for(int i=0; i<all.size(); i++) {
+			if(all.get(i).getClasse().getCodeCL().equals(classe) &&
+					all.get(i).getDateEx().equals(date) &&
+					all.get(i).getHeureEx().equals(heure)  &&
+					all.get(i).getGroupe().equals(groupe)) {
+				x=1; 
+			}
+		}
+		return x;
 	}
 }

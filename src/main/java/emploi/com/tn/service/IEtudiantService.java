@@ -7,10 +7,11 @@ import emploi.com.tn.entities.Etudiant;
 public interface IEtudiantService {
 	
 	
-	public  void addEtudiant(int cin, String nom, String prenom,String mailEtud, String classe);
-	public  void editEtudiant(int id, int cin, String nom, String prenom,String mailEtud, String classe);
-	public  Etudiant getEtudiant(int id); 
+	public  void addEtudiant(String id, int cin, String nom, String prenom,String mailEtud, String classe);
+	public  void editEtudiant(String id, int cin, String nom, String prenom,String mailEtud, String classe);
+	public  Etudiant getEtudiant(String id); 
 	public  List<Etudiant> getEtudiants(); 
-	public  void deleteEtudiant(int id);
+	public  void deleteEtudiant(String id);
+	public  int verifEtudiantExiste(String code, String mail, int cin);
 
 }

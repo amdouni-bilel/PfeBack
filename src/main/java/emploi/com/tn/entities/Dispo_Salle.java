@@ -1,74 +1,86 @@
 package emploi.com.tn.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
+@Entity
 public class Dispo_Salle {
-
-    private int DispoSalle;
-    private String Dispo;
-    @Temporal(TemporalType.DATE)
-    private Date dateDebut;
-    @Temporal(TemporalType.DATE)
-    private Date dateFin;
-    private String heureDebut;
-    private String heureFin;
+	
+	@Id
+    private int id;
+	@Temporal(TemporalType.DATE)
+	private Date dateDebut;
+	@Temporal(TemporalType.DATE)
+	private Date dateFin;
+	private String heureDebut;
+	private String heureFin;
     private String motif;
 
-    public int getDispoSalle() {
-        return DispoSalle;
-    }
 
-    public void setDispoSalle(int dispoSalle) {
-        DispoSalle = dispoSalle;
-    }
 
-    public String getDispo() {
-        return Dispo;
-    }
+	@ManyToOne
+    @JoinColumn(name="salle_id")
+    private Salle salle ;
 
-    public void setDispo(String dispo) {
-        Dispo = dispo;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public Date getDateDebut() {
-        return dateDebut;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
+	public Date getDateDebut() {
+		return dateDebut;
+	}
 
-    public Date getDateFin() {
-        return dateFin;
-    }
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
+	public Date getDateFin() {
+		return dateFin;
+	}
 
-    public String getHeureDebut() {
-        return heureDebut;
-    }
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
 
-    public void setHeureDebut(String heureDebut) {
-        this.heureDebut = heureDebut;
-    }
+	public String getMotif() {
+		return motif;
+	}
 
-    public String getHeureFin() {
-        return heureFin;
-    }
+	public void setMotif(String motif) {
+		this.motif = motif;
+	}
 
-    public void setHeureFin(String heureFin) {
-        this.heureFin = heureFin;
-    }
+	public Salle getSalle() {
+		return salle;
+	}
 
-    public String getMotif() {
-        return motif;
-    }
+	public void setSalle(Salle salle) {
+		this.salle = salle;
+	}
+	public String getHeureDebut() {
+		return heureDebut;
+	}
 
-    public void setMotif(String motif) {
-        this.motif = motif;
-    }
+	public void setHeureDebut(String heureDebut) {
+		this.heureDebut = heureDebut;
+	}
+
+	public String getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(String heureFin) {
+		this.heureFin = heureFin;
+	}
+    
+     
 }

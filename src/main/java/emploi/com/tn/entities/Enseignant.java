@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Enseignant {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idEns; 
+	private String  idEns; 
 	private String nom; 
 	private String prenom; 
 	private String typeEns ; 
@@ -20,6 +19,9 @@ public class Enseignant {
 	private int nbrsurveillance ;
 	private float  nbrHeursurveillance ;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "ens", cascade = CascadeType.ALL)
+	private List<Dispo_Ensgeinant> dispoEns ;
 
 
 
@@ -32,15 +34,25 @@ public class Enseignant {
 	@OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
 	private List<ESP_Module> espModules ;
 
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="code_dept")
 	private ESP_Dept espdept;
 
-	public int getIdEns() {
+
+	
+	
+	public String getIdEns() {
 		return idEns;
 	}
-	public void setIdEns(int idEns) {
+	public void setIdEns(String idEns) {
 		this.idEns = idEns;
+	}
+	public List<Dispo_Ensgeinant> getDispoEns() {
+		return dispoEns;
+	}
+	public void setDispoEns(List<Dispo_Ensgeinant> dispoEns) {
+		this.dispoEns = dispoEns;
 	}
 	public String getNom() {
 		return nom;

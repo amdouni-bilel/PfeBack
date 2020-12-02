@@ -2,14 +2,7 @@ package emploi.com.tn.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Examen {
@@ -18,10 +11,16 @@ public class Examen {
 	private int idExamen; 
 	@Temporal(TemporalType.DATE)
 	private Date dateEx; 
+	private String heureEx;
+	/*@Column(name="TestName")*/
 	private String dureeEx; 
-	private int nbrEtdEx; 
-	private String typeEx; 
+	private String dsex;
 	private String semestre ;
+	private String session ;
+	private String typeEx ;
+	private String groupe ;
+	
+	
 
 		//Enseignant : dispo et ne peut pas surveiller  2 examens en mm temps)
 	@ManyToOne
@@ -36,10 +35,7 @@ public class Examen {
 	@ManyToOne
 	@JoinColumn(name="classe_id")
 	private Classe classe; 
-	
-	@ManyToOne
-	@JoinColumn(name="anneeUniversitaire_id")
-	private AnneeUniversitaire anneeUniversitaire;  
+
 	
 	@ManyToOne
 	@JoinColumn(name="espModule_id")
@@ -69,20 +65,13 @@ public class Examen {
 		this.dureeEx = dureeEx;
 	}
 
-	public int getNbrEtdEx() {
-		return nbrEtdEx;
+	
+	public String getDsex() {
+		return dsex;
 	}
 
-	public void setNbrEtdEx(int nbrEtdEx) {
-		this.nbrEtdEx = nbrEtdEx;
-	}
-
-	public String getTypeEx() {
-		return typeEx;
-	}
-
-	public void setTypeEx(String typeEx) {
-		this.typeEx = typeEx;
+	public void setDsex(String dsex) {
+		this.dsex = dsex;
 	}
 
 	public String getSemestre() {
@@ -117,13 +106,6 @@ public class Examen {
 		this.classe = classe;
 	}
 
-	public AnneeUniversitaire getAnneeUniversitaire() {
-		return anneeUniversitaire;
-	}
-
-	public void setAnneeUniversitaire(AnneeUniversitaire anneeUniversitaire) {
-		this.anneeUniversitaire = anneeUniversitaire;
-	}
 
 	public ESP_Module getEspModule() {
 		return espModule;
@@ -132,6 +114,39 @@ public class Examen {
 	public void setEspModule(ESP_Module espModule) {
 		this.espModule = espModule;
 	}
+
+	public String getTypeEx() {
+		return typeEx;
+	}
+
+	public void setTypeEx(String typeEx) {
+		this.typeEx = typeEx;
+	}
+
+	public String getHeureEx() {
+		return heureEx;
+	}
+
+	public void setHeureEx(String heureEx) {
+		this.heureEx = heureEx;
+	}
+
+	public String getSession() {
+		return session;
+	}
+
+	public void setSession(String session) {
+		this.session = session;
+	}
+
+	public String getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(String groupe) {
+		this.groupe = groupe;
+	}
+	
 	
 	
 	

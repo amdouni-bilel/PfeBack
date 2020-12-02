@@ -8,9 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ESP_Module {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codeModule;
+	@Id 
+	private String codeModule;
 	private String designation ;
 	private int nbrHeures;
 	private float coefficient;
@@ -23,21 +22,35 @@ public class ESP_Module {
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
 	private List<Module_Classe> moduleClasse ;
 
+	
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="classe_id")
 	private Classe classe;
 
+	
 	@ManyToOne
 	@JoinColumn(name="enseignant_id")
 	private Enseignant enseignant;
 
 	@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="ue_id")
+    private UE ue;
+
+
+
+    @JsonIgnore
 	@OneToMany(mappedBy = "espModule", cascade = CascadeType.ALL)
 	private List<Examen> examens ;
-	public int getCodeModule() {
+    
+    
+
+
+	public String getCodeModule() {
 		return codeModule;
 	}
-	public void setCodeModule(int codeModule) {
+	public void setCodeModule(String codeModule) {
 		this.codeModule = codeModule;
 	}
 	public String getDesignation() {
@@ -110,4 +123,15 @@ public class ESP_Module {
 	public void setEnseignant(Enseignant enseignant) {
 		this.enseignant = enseignant;
 	}
+
+	public UE getUe() {
+        return ue;
+    }
+
+    public void setUe(UE ue) {
+        this.ue = ue;
+    }
+    
+    
+    
 }
